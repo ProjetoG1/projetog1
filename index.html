@@ -1,20 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" dir="ltr">
 
 <head>
-  <title></title>
   <meta charset="utf-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <title>Campus Solutions</title>
+  <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Teste</h1>
-  <p>Parágrafo teste 1.</p>
-  <div class="alert alert-secondary" role="alert">
-    A simple secondary alert—check it out!
+
+  <div class="jumbotron text-center" style="margin-bottom:0; padding:4px">
+    <img src="images/logo1.png" style="width:300px;" alt="Campus Solution Logo Error">
+    <p>A empresa que fornece soluções para seus problemas!</p>
   </div>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="index.html">Campus Solutions</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contato</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sobre</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top:30px">
+    <div class="row">
+      <div class="col-sm-4">
+        <h2 class="text-center">Acesso:</h2>
+        <div class="container">
+          <div class="jumbotron text-left">
+            <form action="#">
+              <div class="form-group">
+                <label for="user">Usuário:</label>
+                <input type="user" class="form-control" id="user" placeholder="Usuário">
+              </div>
+              <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="senha" class="form-control" id="senha" placeholder="Senha">
+              </div>
+              <center>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+                <br><br>
+                <a href="#">Esqueceu sua senha?</a>
+                <br><br>
+              </center>
+            </form>
+            <center>
+              <a href="#"><button class="btn btn-primary">Cadastre-se</button></a>
+            </center>
+          </div>
+        </div>
+        <hr class="d-sm-none">
+      </div>
+      <div class="col-sm-8">
+        <h2>Serviços:</h2>
+        <h5>Alguns dos serviços que são prestados.</h5>
+        <div class="jumbotron container">
+          <ul class="list-group" style="margin:-15px;margin-top:-30px;margin-bottom:-30px">
+            <li class="list-group-item">✔ Aulas</li>
+            <li class="list-group-item">✔ Autos</li>
+            <li class="list-group-item">✔ Consultoria</li>
+            <li class="list-group-item">✔ Design & Tecnologia</li>
+            <li class="list-group-item">✔ Eventos</li>
+            <li class="list-group-item">✔ Moda & Beleza</li>
+            <li class="list-group-item">✔ Reformas</li>
+          </ul>
+        </div>
+        <br>
+      </div>
+    </div>
+
+    <div class="jumbotron text-center" style="margin-bottom:0;padding:10px">
+      <p>Developers:<br> Andrei, Lucas, Vinicius, Stephane & Rogério.</p>
+    </div>
+
 
 </body>
 
