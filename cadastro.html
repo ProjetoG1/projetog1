@@ -5,9 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="javascript" href="js/app.js">
   <script src="js/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <title>Campus Solutions</title>
+  <link rel="shortcut icon" type="imagem/x-icon" href="images/tools.png" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <title>Campus Solutions - Cadastro</title>
   <style>
     .fakeimg {
       height: 200px;
@@ -15,6 +19,71 @@
     }
   </style>
 </head>
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    function limpa_formulário_cep() {
+      // Limpa valores do formulário de cep.
+      $("#rua").val("");
+      $("#bairro").val("");
+      $("#cidade").val("");
+      $("#uf").val("");
+      $("#ibge").val("");
+      $("#numero").focus();
+    }
+
+    //Quando o campo cep perde o foco.
+    $("#cep").blur(function () {
+
+      //Nova variável "cep" somente com dígitos.
+      var cep = $(this).val().replace(/\D/g, '');
+
+      //Verifica se campo cep possui valor informado.
+      if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+        //Valida o formato do CEP.
+        if (validacep.test(cep)) {
+
+          //Preenche os campos com "..." enquanto consulta webservice.
+          $("#rua").val("...");
+          $("#bairro").val("...");
+          $("#cidade").val("...");
+          $("#uf").val("...");
+          $("#numero").focus();
+
+          //Consulta o webservice viacep.com.br/
+          $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+            if (!("erro" in dados)) {
+              //Atualiza os campos com os valores da consulta.
+              $("#rua").val(dados.logradouro);
+              $("#bairro").val(dados.bairro);
+              $("#cidade").val(dados.localidade);
+              $("#uf").val(dados.uf);
+            } //end if.
+            else {
+              //CEP pesquisado não foi encontrado.
+              limpa_formulário_cep();
+              alert("CEP não encontrado.");
+            }
+          });
+        } //end if.
+        else {
+          //cep é inválido.
+          limpa_formulário_cep();
+          alert("Formato de CEP inválido.");
+        }
+      } //end if.
+      else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+      }
+    });
+  });
+</script>
 
 <body>
 
@@ -40,50 +109,90 @@
     </div>
   </nav>
 
-  <div class="container" style="margin-top:30px">
+  <div class="container text-center" style="margin-top:30px">
     <div class="row">
-      <div class="col-sm-4">
-        <h2 class="text-center">Acesso:</h2>
-        <div class="container">
-          <div class="jumbotron text-left">
-            <form action="#">
-              <div class="form-group">
-                <label for="user">Usuário:</label>
-                <input type="user" class="form-control" id="user" placeholder="Usuário">
-              </div>
-              <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="senha" class="form-control" id="senha" placeholder="Senha">
-              </div>
-              <center>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-                <br><br>
-                <a href="#">Esqueceu sua senha?</a>
-                <br><br>
-              </center>
-            </form>
-            <center>
-              <a href="#"><button class="btn btn-primary">Cadastre-se</button></a>
-            </center>
-          </div>
+      <div class="jumbotron jumbotron mx-auto">
+        <h1 class="display-4">Cadastro</h1>
+        <div class="jumbotron">
+          <p class="lead">Informe seus dados para concluir o cadastro em Campus Solutions. <br> Todas informações são necessárias! </p>
+          <hr class="my-4">
+          <form action="/action_page.php" class="was-validated">
+            <div class="form-group">
+              <label for="uname">Nome:</label>
+              <input type="text" class="form-control" id="uname" placeholder="Nome" name="uname" required>
+              <div class="valid-feedback">Válido.</div>
+              <div class="invalid-feedback">Campo Obrigatório.</div>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Sobrenome:</label>
+              <input type="text" class="form-control" id="email" placeholder="Sobrenome" name="pswd" required>
+              <div class="valid-feedback">Válido.</div>
+              <div class="invalid-feedback">Campo Obrigatório.</div>
+            </div>
+            <div class="form-group">
+              <label for="pwd">E-mail:</label>
+              <input type="email" class="form-control" id="pwd" placeholder="exemplo: exemplo@exemplo.com" name="email"
+                required>
+              <div class="valid-feedback">Válido.</div>
+              <div class="invalid-feedback">Campo Obrigatório.</div>
+            </div>
+            <div class="form-group">
+              <label for="pwd">CPF:</label>
+              <input type="text" class="form-control" id="RegraValida" placeholder="CPF" name="cpf" required>
+              <div class="valid-feedback">Válido.</div>
+              <div class="invalid-feedback">Campo Obrigatório.</div>
+            </div>
+            <div class="form-group">
+              <label for="sel1">Sexo:</label>
+              <select class="form-control" id="sel1">
+                <option>Masculino</option>
+                <option>Feminino</option>
+                <option>Não-Binário</option>
+                <option>Agênero</option>
+                <option>Andrógino</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Telefone:</label>
+              <input type="text" class="form-control" id="pwd" placeholder="Telefone" name="pswd" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">CEP:</label>
+              <input type="text" class="form-control" id="cep" placeholder="CEP" name="pswd" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Endereço:</label>
+              <input type="text" class="form-control" id="rua" placeholder="Endereço" name="pswd" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Bairro:</label>
+              <input type="text" class="form-control" id="bairro" placeholder="Bairro" name="pswd" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Cidade:</label>
+              <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="pswd" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Estado:</label>
+              <input type="text" class="form-control" id="uf" placeholder="Estado" name="pswd" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Numero:</label>
+              <input type="text" class="form-control" id="numero" placeholder="Numero" name="pswd" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Complemento:</label>
+              <input type="text" class="form-control" id="comple" placeholder="Complemento" name="pswd" required>
+            </div>
+            <div class="form-group form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="remember" required> I aasdasgree on blabla.
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastro!</button>
+          </form>
         </div>
         <hr class="d-sm-none">
-      </div>
-      <div class="col-sm-8">
-        <h2>Serviços:</h2>
-        <h5>Alguns dos serviços que são prestados.</h5>
-        <div class="jumbotron container">
-          <ul class="list-group" style="margin:-15px;margin-top:-30px;margin-bottom:-30px">
-            <li class="list-group-item">✔ Aulas</li>
-            <li class="list-group-item">✔ Autos</li>
-            <li class="list-group-item">✔ Consultoria</li>
-            <li class="list-group-item">✔ Design & Tecnologia</li>
-            <li class="list-group-item">✔ Eventos</li>
-            <li class="list-group-item">✔ Moda & Beleza</li>
-            <li class="list-group-item">✔ Reformas</li>
-          </ul>
-        </div>
-        <br>
       </div>
     </div>
 
