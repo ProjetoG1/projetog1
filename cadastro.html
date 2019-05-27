@@ -142,6 +142,22 @@
     </div>
   </nav>
 
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {},
+      Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/5cec43eea667a0210d59b243/default';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+
   <div class="container text-center" style="margin-top:30px">
     <div class="row">
       <div class="jumbotron jumbotron mx-auto" style="background-color: darkorange">
@@ -167,7 +183,8 @@
             </div>
             <div class="form-group">
               <label for="pwd">CPF:</label>
-              <input type="text" class="form-control" maxlength="14" id="RegraValida" value="" name="RegraValida" required onkeydown="javascript: fMasc( this, mCPF );">
+              <input type="text" class="form-control" maxlength="14" id="RegraValida" value="" name="RegraValida"
+                required onkeydown="javascript: fMasc( this, mCPF );">
               <div class="valid-feedback">Válido.</div>
               <div class="invalid-feedback">Campo Obrigatório.</div>
             </div>
